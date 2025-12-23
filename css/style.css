@@ -809,18 +809,19 @@ html.dark-mode .mini-photo {
 }
 
 .highlight {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
     font-weight: 700;
-    background-size: 200% 200%;
-    animation: highlightFlow 4s ease infinite;
+    color: var(--primary); /* stable fallback for iOS/macOS */
 }
 
-@keyframes highlightFlow {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+/* Use gradient text only if reliably supported */
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+    .highlight {
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        /* No animation: avoid intermittent fallback on iOS/macOS */
+    }
 }
 
 .cta-buttons {
@@ -2388,15 +2389,32 @@ html.dark-mode .footer-logo-dark {
 
 .form-group select {
     appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c41e5f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 20px;
-    padding-right: 3rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: var(--bg-secondary);
+    padding-right: 3rem; /* leave space for custom arrow */
 }
 
 html.dark-mode .form-group select {
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f1f5f9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background: var(--bg-secondary);
+}
+
+/* Consistent arrow for selects via parent container */
+.select-group::after {
+    content: '';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--primary);
+    border-bottom: 2px solid var(--primary);
+    transform: translateY(-50%) rotate(45deg);
+    pointer-events: none;
+}
+
+html.dark-mode .select-group::after {
+    border-color: #f1f5f9;
 }
 
 .form-group select option {
