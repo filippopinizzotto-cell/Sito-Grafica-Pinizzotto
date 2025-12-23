@@ -4,7 +4,22 @@
 // const cursorOutline = document.querySelector('.cursor-outline');
 
 // ===== DARK MODE TOGGLE =====
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() { 
+    const applySafariHighlightFix = () => {
+        const ua = navigator.userAgent || navigator.vendor || window.opera;
+        const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+        if (!isSafari) return;
+        const els = document.querySelectorAll('.highlight');
+        els.forEach(el => {
+            el.style.webkitTextFillColor = 'transparent';
+            el.style.backgroundImage = 'linear-gradient(135deg, var(--primary), var(--accent))';
+            el.style.backgroundClip = 'text';
+            el.style.webkitBackgroundClip = 'text';
+            void el.offsetWidth;
+        });
+    };
+    applySafariHighlightFix();
+    window.addEventListener('load', applySafariHighlightFix);
     const themeToggle = document.getElementById('themeToggle');
     const htmlElement = document.documentElement;
     

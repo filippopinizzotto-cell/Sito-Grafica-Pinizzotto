@@ -2417,7 +2417,7 @@ html.dark-mode .footer-logo-dark {
     -webkit-appearance: none;
     -moz-appearance: none;
     background: var(--bg-secondary);
-    padding-right: 3rem; /* leave space for custom arrow */
+    padding-right: 3.5rem; /* leave space for custom arrow */
 }
 
 html.dark-mode .form-group select {
@@ -2428,14 +2428,15 @@ html.dark-mode .form-group select {
 .select-group::after {
     content: '';
     position: absolute;
-    right: 1rem;
+    right: 0.75rem;
     top: 50%;
-    width: 10px;
-    height: 10px;
-    border-right: 2px solid var(--primary);
-    border-bottom: 2px solid var(--primary);
-    transform: translateY(-50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+    border-right: 2.5px solid var(--primary);
+    border-bottom: 2.5px solid var(--primary);
+    transform: translateY(-55%) rotate(45deg);
     pointer-events: none;
+    z-index: 3;
 }
 
 html.dark-mode .select-group::after {
@@ -2800,8 +2801,19 @@ html.dark-mode .select-group::after {
         text-align: center;
     }
 
+    .form-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
     .form-row {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 0;
     }
 
     .form-actions {
