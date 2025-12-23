@@ -2369,6 +2369,20 @@ html.dark-mode .form-group select {
     text-decoration: underline;
 }
 
+/* Generic privacy link styling when placed outside checkbox group */
+.privacy-link {
+    display: inline-block;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.privacy-link:hover {
+    text-decoration: underline;
+}
+
 .checkbox-label {
     display: flex;
     align-items: center;
