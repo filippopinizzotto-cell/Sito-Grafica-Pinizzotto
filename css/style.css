@@ -2453,7 +2453,7 @@ html.dark-mode .form-group select {
 /* Generic privacy link styling when placed outside checkbox group */
 .privacy-link, #privacyLink {
     display: inline-block;
-    color: var(--primary);
+    color: #c41e5f;
     font-weight: 700;
     text-decoration: none;
     margin-top: 0.5rem;
@@ -2461,6 +2461,7 @@ html.dark-mode .form-group select {
 }
 
 .privacy-link:hover, #privacyLink:hover {
+    color: #a01850;
     text-decoration: underline;
 }
 
