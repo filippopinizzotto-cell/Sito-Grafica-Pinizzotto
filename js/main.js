@@ -47,6 +47,8 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
+            const isOpen = hamburger.classList.contains('active');
+            hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
 
         // Close menu when clicking a link
