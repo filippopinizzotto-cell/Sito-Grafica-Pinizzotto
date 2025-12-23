@@ -82,7 +82,7 @@
                         <input type="email" id="email" placeholder=" " required>
                         <label for="email">Email</label>
                     </div>
-                    <a href="#" class="privacy-link">Leggi l'informativa sulla privacy (D.Lgs 196/2003)</a>
+                    <a href="#" id="privacyLink" data-privacy-link>Leggi l'informativa sulla privacy (D.Lgs 196/2003)</a>
                     <div class="form-group checkbox">
                         <input type="checkbox" id="privacy" required>
                         <label for="privacy">Ho letto l'informativa sulla privacy e acconsento al trattamento dei miei dati personali</label>
@@ -179,6 +179,63 @@
             <p class="footer-copyright">&copy; 2025 Pinizzotto. Tutti i diritti riservati.</p>
         </div>
     </footer>
+    
+    <!-- Privacy Modal -->
+    <div id="privacyModal" class="privacy-modal">
+        <div class="privacy-modal-content">
+            <div class="privacy-modal-header">
+                <h2>INFORMATIVA AI SENSI DELL'EX ART. 13 D.LGS. N. 196/2003</h2>
+                <p class="privacy-subtitle">"Codice in materia di protezione dei dati personali"</p>
+                <button class="privacy-close" id="privacyClose">&times;</button>
+            </div>
+            <div class="privacy-modal-body">
+                <p><strong>Gentile Cliente,</strong></p>
+                <p>Desideriamo informarla che il D.lgs. n. 195 del 30 giugno 2003 ("Codice in materia di protezione dei dati personali") prevede la tutela delle persone e di altri soggetti rispetto al trattamento dei dati personali.</p>
+                <p>Secondo la normativa indicata, tale trattamento sarà improntato ai principi di correttezza, liceità e trasparenza e di tutela della Sua riservatezza e dei Suoi diritti.</p>
+                
+                <p>Ai sensi dell'articolo 13 del D.lgs. n.196/2003, pertanto, Le forniamo le seguenti informazioni:</p>
+                
+                <ol>
+                    <li>I dati da Lei forniti verranno trattati esclusivamente al fine di permetterle di contattarci tramite il sito www.graficapinizzotto.it;</li>
+                    <li>Il trattamento sarà effettuato con modalità informatizzata.</li>
+                    <li>Il conferimento dei dati, a Lei Facoltativo e spontaneo, è utile a fornire tali dati comporti l'impossibilità di usufruire dei servizi offerti dal sito Web www.graficapinizzotto.it.</li>
+                    <li>I Suoi dati personali e i contenuti non saranno comunicati ad altri soggetti, né saranno oggetto di diffusione.</li>
+                    <li>Il titolare del trattamento è: GRAFICO PINIZZOTTO di Pinizzotto Marcello - Piantedo (SO) - Via Nazionale, 406/A.</li>
+                    <li>Il responsabile del trattamento è: il sig. Marcello Pinizzotto.</li>
+                    <li>In ogni momento potrà esercitare i Suoi diritti nei confronti del titolare del trattamento, ai sensi dell'art. 7 - Diritto di accesso ai dati personali ed altri diritti del D.lgs.195/03 che riproduciamo integralmente più sotto.</li>
+                </ol>
+
+                <h3>Decreto Legislativo n.196/2003</h3>
+                <h4>Art. 7 - Diritto di accesso ai dati personali ed altri diritti</h4>
+
+                <ol>
+                    <li>L'interessato ha diritto di ottenere la conferma dell'esistenza o meno di dati personali che lo riguardano, anche se non ancora registrati, e la loro comunicazione in forma intelligibile.</li>
+                    <li>L'interessato ha diritto di ottenere l'indicazione:
+                        <ul>
+                            <li>a. dell'origine dei dati personali;</li>
+                            <li>b. delle finalità e modalità del trattamento;</li>
+                            <li>c. della logica applicata in caso di trattamento effettuato con l'ausilio di strumenti elettronici;</li>
+                            <li>d. degli estremi identificativi del titolare, dei responsabili e del rappresentante designato ai sensi dell'articolo 5, comma 2;</li>
+                            <li>e. dei soggetti o delle categorie di soggetti ai quali i dati personali possono essere comunicati o che possono venirne a conoscenza in qualità di rappresentante designato nel territorio dello Stato, di responsabili o incaricati.</li>
+                        </ul>
+                    </li>
+                    <li>L'interessato ha diritto di ottenere:
+                        <ul>
+                            <li>a. l'aggiornamento, la rettificazione ovvero, quando vi ha interesse, l'integrazione dei dati;</li>
+                            <li>b. la cancellazione, la trasformazione in forma anonima o il blocco dei dati trattati in violazione di legge, compresi quelli di cui non è necessaria la conservazione in relazione agli scopi per i quali i dati sono stati raccolti o successivamente trattati;</li>
+                            <li>c. l'attestazione che le operazioni di cui alle lettere a) e b) sono state portate a conoscenza, anche per quanto riguarda il loro contenuto, di coloro ai quali i dati sono stati comunicati o diffusi, eccettuato il caso in cui tale adempimento si rivela impossibile o comporta un impiego di mezzi manifestamente sproporzionato rispetto al diritto tutelato.</li>
+                        </ul>
+                    </li>
+                    <li>L'interessato ha diritto di opporsi, in tutto o in parte:
+                        <ul>
+                            <li>a. per motivi legittimi al trattamento dei dati personali che lo riguardano, ancorché pertinenti allo scopo della raccolta;</li>
+                            <li>b. al trattamento di dati personali che lo riguardano a fini di invio di materiale pubblicitario o di vendita diretta o per il compimento di ricerche di mercato o di comunicazione commerciale.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
     
     <script src="js/main.js"></script>
 </body>

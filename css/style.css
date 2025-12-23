@@ -2451,16 +2451,16 @@ html.dark-mode .form-group select {
 }
 
 /* Generic privacy link styling when placed outside checkbox group */
-.privacy-link {
+.privacy-link, #privacyLink {
     display: inline-block;
     color: var(--primary);
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
     margin-top: 0.5rem;
     margin-bottom: 0.25rem;
 }
 
-.privacy-link:hover {
+.privacy-link:hover, #privacyLink:hover {
     text-decoration: underline;
 }
 
