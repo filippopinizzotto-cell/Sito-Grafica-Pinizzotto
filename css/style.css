@@ -824,6 +824,31 @@ html.dark-mode .mini-photo {
     }
 }
 
+/* Safari/iOS: avoid blur in hero animation and keep gradient text stable */
+@supports (-webkit-touch-callout: none) {
+    @keyframes fadeInUpSafari {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .hero-subtitle {
+        animation: fadeInUpSafari 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
+
+    .highlight {
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
 .cta-buttons {
     display: flex;
     gap: 1.5rem;
