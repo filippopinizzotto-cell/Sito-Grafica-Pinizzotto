@@ -491,60 +491,112 @@ document.addEventListener('DOMContentLoaded', function() {
         statNumbers.forEach(stat => statsObserver.observe(stat));
     }
 
-    // ===== PORTFOLIO CAROUSEL =====
+    // ===== PORTFOLIO CAROUSEL (infinite forward loop) =====
     const carousel = document.querySelector('.portfolio-carousel');
     if (carousel) {
         const track = carousel.querySelector('.carousel-track');
-        const slides = Array.from(track.children);
+        const originalSlides = Array.from(track.children);
         const prevBtn = carousel.querySelector('.prev');
         const nextBtn = carousel.querySelector('.next');
         const indicatorsContainer = carousel.querySelector('.carousel-indicators');
-        
-        let currentIndex = 0;
-        
-        // Create indicators
-        slides.forEach((_, index) => {
+
+        const SLIDE_COUNT = originalSlides.length;
+        if (SLIDE_COUNT === 0) return;
+
+        // Clone first and last for seamless wrap
+        const firstClone = originalSlides[0].cloneNode(true);
+        const lastClone = originalSlides[SLIDE_COUNT - 1].cloneNode(true);
+        track.insertBefore(lastClone, originalSlides[0]);
+        track.appendChild(firstClone);
+
+        // Internal index uses range [0..SLIDE_COUNT+1], where 0 = lastClone, 1..SLIDE_COUNT = real slides, SLIDE_COUNT+1 = firstClone
+        let index = 1; // start on first real slide
+
+        // Ensure transition style exists
+        const transitionCSS = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+        track.style.transition = transitionCSS;
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        // Indicators for real slides
+        originalSlides.forEach((_, i) => {
             const indicator = document.createElement('div');
             indicator.classList.add('carousel-indicator');
-            if (index === 0) indicator.classList.add('active');
-            indicator.addEventListener('click', () => goToSlide(index));
+            if (i === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToRealSlide(i));
             indicatorsContainer.appendChild(indicator);
         });
-        
         const indicators = Array.from(indicatorsContainer.children);
-        
-        function updateCarousel() {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentIndex);
-            });
+
+        function setActiveIndicator() {
+            const visibleRealIndex = (index - 1 + SLIDE_COUNT) % SLIDE_COUNT; // map 1..SLIDE_COUNT to 0..SLIDE_COUNT-1
+            indicators.forEach((dot, i) => dot.classList.toggle('active', i === visibleRealIndex));
         }
-        
-        function goToSlide(index) {
-            currentIndex = index;
-            updateCarousel();
+
+        function snapWithoutTransition(toIndex) {
+            // Temporarily disable transition to avoid backward visual motion
+            track.style.transition = 'none';
+            index = toIndex;
+            track.style.transform = `translateX(-${index * 100}%)`;
+            // Force reflow, then restore transition
+            void track.offsetHeight;
+            track.style.transition = transitionCSS;
+            setActiveIndicator();
         }
-        
+
+        function goToRealSlide(realIndex) {
+            // realIndex is 0..SLIDE_COUNT-1, map to internal index realIndex+1
+            index = realIndex + 1;
+            track.style.transform = `translateX(-${index * 100}%)`;
+            setActiveIndicator();
+        }
+
         function nextSlide() {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateCarousel();
+            index += 1;
+            track.style.transform = `translateX(-${index * 100}%)`;
+            setActiveIndicator();
+
+            // If we moved onto the firstClone, snap forward to first real slide
+            if (index === SLIDE_COUNT + 1) {
+                track.addEventListener('transitionend', function handleNextWrap() {
+                    track.removeEventListener('transitionend', handleNextWrap);
+                    snapWithoutTransition(1);
+                });
+            }
         }
-        
+
         function prevSlide() {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateCarousel();
+            index -= 1;
+            track.style.transform = `translateX(-${index * 100}%)`;
+            setActiveIndicator();
+
+            // If we moved onto the lastClone, snap backward to last real slide
+            if (index === 0) {
+                track.addEventListener('transitionend', function handlePrevWrap() {
+                    track.removeEventListener('transitionend', handlePrevWrap);
+                    snapWithoutTransition(SLIDE_COUNT);
+                });
+            }
         }
-        
+
         nextBtn.addEventListener('click', nextSlide);
         prevBtn.addEventListener('click', prevSlide);
-        
+
         // Auto-play
         let autoplayInterval = setInterval(nextSlide, 5000);
-        
         carousel.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
         carousel.addEventListener('mouseleave', () => {
             autoplayInterval = setInterval(nextSlide, 5000);
         });
+
+        // Mobile/touch: tap to toggle overlay visibility and center text
+        const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+        if (isTouch) {
+            track.querySelectorAll('.portfolio-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    item.classList.toggle('overlay-visible');
+                });
+            });
+        }
     }
 
     // ===== PARALLAX SCROLLING =====
