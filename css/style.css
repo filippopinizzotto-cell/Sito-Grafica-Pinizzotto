@@ -2345,7 +2345,7 @@ html.dark-mode .footer-logo-dark {
 .form-group select:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(217, 70, 239, 0.1);
+    box-shadow: 0 0 0 4px rgba(196, 30, 95, 0.1);
     background: var(--bg-primary);
 }
 
@@ -2388,7 +2388,7 @@ html.dark-mode .footer-logo-dark {
 
 .form-group select {
     appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d946ef' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c41e5f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 20px;
@@ -2415,6 +2415,12 @@ html.dark-mode .form-group select {
     align-items: flex-start; /* better alignment for multi-line labels */
     gap: 0.75rem;
     flex-wrap: nowrap;
+}
+
+/* Center align inline radio options beside selects in row layouts */
+.form-row .form-group.checkbox {
+    align-items: center;
+    align-self: center;
 }
 
 .form-group.checkbox input {
@@ -2517,7 +2523,8 @@ html.dark-mode .form-group select {
 
 .form-group input:valid:not(:placeholder-shown),
 .form-group textarea:valid:not(:placeholder-shown) {
-    border-color: #10b981;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(196, 30, 95, 0.12);
 }
 
 @keyframes shake {
@@ -2848,7 +2855,6 @@ html.dark-mode .form-group select {
     background: none;
     border: none;
     cursor: pointer;
-    transition: transform 0.2s ease;
     line-height: 1;
     padding: 0;
     width: 32px;
@@ -2856,7 +2862,7 @@ html.dark-mode .form-group select {
 }
 
 .privacy-close:hover {
-    transform: rotate(90deg);
+    opacity: 0.8;
 }
 
 .privacy-modal-body {
