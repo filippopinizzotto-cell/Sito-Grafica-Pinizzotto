@@ -400,32 +400,39 @@ document.addEventListener('DOMContentLoaded', function() {
     const privacyModal = document.getElementById('privacyModal');
     const privacyClose = document.getElementById('privacyClose');
 
-    if (privacyLink && privacyModal && privacyClose) {
-        privacyLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            privacyModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
+    // Helper to open/close privacy modal; works on touch and delegated triggers
+    const openPrivacy = (e) => {
+        if (!privacyModal) return;
+        if (e) e.preventDefault();
+        privacyModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
 
-        privacyClose.addEventListener('click', function() {
-            privacyModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
+    const closePrivacy = () => {
+        if (!privacyModal) return;
+        privacyModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    };
 
-        // Click outside to close
+    if (privacyModal) {
+        if (privacyClose) {
+            privacyClose.addEventListener('click', closePrivacy);
+        }
+
         privacyModal.addEventListener('click', function(e) {
-            if (e.target === privacyModal) {
-                privacyModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
+            if (e.target === privacyModal) closePrivacy();
         });
 
-        // Close on ESC key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && privacyModal.classList.contains('active')) {
-                privacyModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
+                closePrivacy();
             }
+        });
+
+        // Attach to any element marked for privacy modal (anchor or button), plus legacy #privacyLink
+        const privacyTriggers = Array.from(document.querySelectorAll('[data-privacy-link], #privacyLink'));
+        privacyTriggers.forEach(trigger => {
+            trigger.addEventListener('click', openPrivacy);
         });
     }
 
