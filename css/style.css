@@ -773,6 +773,13 @@ html.dark-mode .mini-photo {
     75% { transform: translate(2px, -2px); opacity: 0.6; clip-path: inset(30% 0 50% 0); }
 }
 
+/* Disable tilt transforms for selected cards on mobile */
+@media (max-width: 768px) {
+    .no-tilt-mobile {
+        transform: none !important;
+    }
+}
+
 .hero-subtitle {
     font-size: clamp(1.1rem, 2.5vw, 1.5rem);
     color: var(--text-secondary);
@@ -2335,7 +2342,7 @@ html.dark-mode .form-group select {
 /* Checkbox Styling */
 .form-group.checkbox {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.75rem;
 }
 
@@ -2343,7 +2350,7 @@ html.dark-mode .form-group select {
     width: auto;
     min-width: 20px;
     height: 20px;
-    margin-top: 0.25rem;
+    margin-top: 0;
     cursor: pointer;
 }
 

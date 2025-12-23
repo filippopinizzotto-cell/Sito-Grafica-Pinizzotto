@@ -60,7 +60,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== TILT EFFECT FOR CARDS =====
     const tiltElements = document.querySelectorAll('[data-tilt], .feature-card, .service-card, .category-card');
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
     tiltElements.forEach(el => {
+        // Skip tilt on mobile for elements explicitly marked
+        if (isMobile && el.classList.contains('no-tilt-mobile')) {
+            el.style.transform = 'perspective(1150px) rotateX(0) rotateY(0) translateZ(0)';
+            return;
+        }
+
         el.addEventListener('mousemove', function(e) {
             const rect = this.getBoundingClientRect();
             const x = e.clientX - rect.left;
