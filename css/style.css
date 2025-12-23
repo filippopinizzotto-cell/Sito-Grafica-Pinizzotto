@@ -46,6 +46,8 @@ html.dark-mode {
 
 html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%; /* prevent iOS auto-zoom on orientation change */
+    text-size-adjust: 100%;
 }
 
 /* ===== HIDE SCROLLBAR ===== */
@@ -2342,8 +2344,9 @@ html.dark-mode .form-group select {
 /* Checkbox Styling */
 .form-group.checkbox {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start; /* better alignment for multi-line labels */
     gap: 0.75rem;
+    flex-wrap: nowrap;
 }
 
 .form-group.checkbox input {
@@ -2363,6 +2366,9 @@ html.dark-mode .form-group select {
     cursor: pointer;
     pointer-events: auto;
     line-height: 1.5;
+    flex: 1 1 auto; /* allow label to wrap and use remaining width */
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
 }
 
 .form-group.checkbox .privacy-link {
@@ -2406,6 +2412,17 @@ html.dark-mode .form-group select {
     width: 20px;
     height: 20px;
     margin: 0;
+}
+
+/* Mobile fine-tuning for privacy checkbox */
+@media (max-width: 480px) {
+    .form-group.checkbox label {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    .form-group.checkbox input[type="checkbox"] {
+        margin-top: 0.2rem; /* align with first line of label */
+    }
 }
 
 /* Form Actions */
