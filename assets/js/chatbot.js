@@ -328,17 +328,17 @@ class ChatbotWidget {
         
         // Servizi
         if (message.includes('serviz') || message.includes('cosa fate') || message.includes('cosa offrite')) {
-            return "Offriamo:\n\n• Stampa professionale (biglietti, brochure, manifesti, etichette)\n• Design grafico e logo (da €150)\n• Packaging personalizzato (da €200)\n• Agende e calendari 2026 (da €3 cad)\n• Partecipazioni ed inviti (da €1,50 cad)\n\n*Prezzi indicativi. Su quale servizio vuoi informazioni?";
+            return "Ci occupiamo di stampa professionale e design grafico. I nostri servizi principali sono:\n\nStampa: biglietti da visita, brochure, manifesti, volantini, etichette\nDesign: logo, materiale marketing, packaging\nProdotti: agende, calendari, partecipazioni\n\nC'è qualcosa in particolare che ti interessa?";
         }
         
         // Preventivo
         if (message.includes('preventiv') || message.includes('prezzo') || message.includes('costo') || message.includes('quanto')) {
-            return "Stime indicative:\n\n• Biglietti da visita: da €30 (500 pz)\n• Brochure A4: da €0,50 cad\n• Manifesti 70x100: da €15 cad\n• Logo design: da €150\n• Volantini A5: da €0,30 cad\n\n*Prezzi orientativi. I costi variano per quantità e personalizzazioni.\n\nPer preventivo preciso:\n• Email: info@pinizzotto.it\n• Tel: +39 0342 683265\n• Form: pinizzotto.it/preventivo.html";
+            return "Ti do alcune stime indicative:\n\nBiglietti da visita: da €30 (500 pz)\nBrochure A4: da €0,50 cad\nManifesti 70x100: da €15 cad\nLogo design: da €150\nVolantini A5: da €0,30 cad\n\nI prezzi variano in base a quantità, carta, finiture e personalizzazioni.\n\nPer un preventivo preciso posso farti contattare:\n+39 0342 683265 | info@pinizzotto.it\n\nOppure dimmi cosa ti serve nello specifico e vediamo di aiutarti!";
         }
         
         // Biglietti da visita
         if (message.includes('bigliett')) {
-            return "Realizziamo biglietti da visita di alta qualità:\n\n• Classici (da €30 per 500 pz)\n• Personalizzati (da €50 per 500 pz)\n• Con vernice UV (da €70 per 500 pz)\n• Oro 3D e rilievo lucido (da €90 per 500 pz)\n• Plastificati (da €60 per 500 pz)\n\n*Stime indicative. Per preventivo preciso contattaci al +39 0342 683265 o info@pinizzotto.it";
+            return "I biglietti da visita sono uno dei nostri punti di forza! Possiamo realizzarli classici, personalizzati, con vernice UV, rilievo lucido, oro 3D o plastificati.\n\nChe tipo di biglietto stavi cercando? Ti serve anche il design o hai già la grafica pronta?";
         }
         
         // Tempi di consegna
@@ -353,27 +353,27 @@ class ChatbotWidget {
         
         // Design/Grafica
         if (message.includes('design') || message.includes('logo') || message.includes('grafica')) {
-            return "Servizi di design:\n\n• Logo design: da €150\n• Restyling logo: da €100\n• Materiale marketing completo: da €250\n• Brochure design: da €80\n• Revisioni illimitate incluse\n• File sorgente inclusi\n\n*Stime indicative. Contattaci per preventivo personalizzato: +39 0342 683265";
+            return "Ci occupiamo di design grafico completo! Possiamo creare loghi da zero, restyling di loghi esistenti, brochure, materiale marketing e molto altro.\n\nInclusi nel servizio ci sono revisioni illimitate e tutti i file sorgente.\n\nHai già un'idea di cosa ti serve o preferisci che ti aiutiamo a definire il progetto?";
         }
         
         // Packaging
         if (message.includes('packaging') || message.includes('scatol') || message.includes('confezione')) {
-            return "Packaging personalizzato:\n\n• Scatole personalizzate: da €1,50 cad\n• Shopper carta: da €0,40 cad\n• Etichette adesive: da €0,15 cad\n• Astucciatura: da €2 cad\n\nPer ristorazione, hotel, abbigliamento e prodotti vari.\n\n*Prezzi indicativi. Preventivo preciso: +39 0342 683265";
+            return "Il packaging è fondamentale per valorizzare il tuo prodotto! Realizziamo scatole personalizzate, shopper, etichette adesive e astucciature.\n\nLavoriamo con ristoranti, hotel, negozi di abbigliamento e tanti altri settori.\n\nDi che tipo di packaging hai bisogno? È per un'attività specifica?";
         }
         
         // Agende/Calendari
         if (message.includes('agenda') || message.includes('calendar') || message.includes('2026')) {
-            return "Disponibili:\n\n• Agende 2026: da €3 cad\n• Calendari da tavolo: da €2,50 cad\n• Calendari da muro: da €4 cad\n• Block notes: da €1,80 cad\n\n*Stime per quantità minime (50+ pz). Ideali per il tuo business.\n\nPreventivo preciso: info@pinizzotto.it";
+            return "Abbiamo già le collezioni 2026! Realizziamo agende personalizzate, calendari da tavolo, da muro e block notes con il tuo logo.\n\nSono perfetti come regalo aziendale o per i tuoi clienti.\n\nTi servono per la tua azienda? Quante unità ti servirebbero indicativamente?";
         }
         
         // Partecipazioni/Eventi
         if (message.includes('partecipazion') || message.includes('matrimonio') || message.includes('evento') || message.includes('invit')) {
-            return "Realizziamo:\n\n• Partecipazioni matrimonio: da €1,50 cad\n• Libretti messa: da €2 cad\n• Inviti eventi: da €1 cad\n• Save the date: da €0,80 cad\n\n*Prezzi indicativi per 100+ pz. Cura artigianale e stampa di qualità.\n\nEsempi e preventivi: +39 0342 683265";
+            return "Le partecipazioni e gli inviti sono una delle nostre specialità! Ci prendiamo cura di ogni dettaglio con stampa di qualità e cura artigianale.\n\nRealizziamo partecipazioni matrimonio, libretti messa, inviti per eventi, save the date...\n\nÈ per un matrimonio o per un altro tipo di evento?";
         }
         
         // Saluti
         if (message.includes('ciao') || message.includes('buongiorno') || message.includes('salve') || message.includes('hey')) {
-            return "Benvenuto in Grafica Pinizzotto! Posso aiutarti con informazioni su stampa professionale, design e preventivi. Di cosa hai bisogno?";
+            return "Ciao! Benvenuto in Grafica Pinizzotto. Sono qui per aiutarti con informazioni su stampa, design, preventivi e tutto quello che ti serve.\n\nCosa stai cercando oggi?";
         }
         
         // Ringraziamenti
@@ -382,7 +382,7 @@ class ChatbotWidget {
         }
         
         // Risposta generica
-        return "Per informazioni precise contattaci:\n\n• Telefono: +39 0342 683265\n• Email: info@pinizzotto.it\n• Form online: pinizzotto.it/preventivo.html\n\nTi interessano servizi di stampa, design o altro?";
+        return "Interessante! Per darti le informazioni più precise, potresti dirmi qualcosa in più su cosa ti serve?\n\nOppure se preferisci parlare direttamente con noi:\n+39 0342 683265 | info@pinizzotto.it\n\nTi interessa qualcosa di specifico tra stampa, design o altro?";
     }
 
     generateSessionId() {
