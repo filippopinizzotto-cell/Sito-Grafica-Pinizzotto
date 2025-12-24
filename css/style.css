@@ -79,6 +79,13 @@ body {
     }
 }
 
+/* Lightweight button loading state (no emoji) */
+.btn.loading {
+    opacity: 0.85;
+    cursor: wait;
+}
+.btn.loading .btn-shine { display: none; }
+
 /* ===== CURSORE PERSONALIZZATO ===== */
 .cursor-dot {
     width: 8px;

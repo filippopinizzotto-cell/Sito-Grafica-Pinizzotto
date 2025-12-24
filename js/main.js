@@ -212,6 +212,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (form) {
         const inputs = form.querySelectorAll('input, textarea, select');
+        // Ensure FormSubmit redirect goes to current site origin
+        const nextInput = form.querySelector('input[name="_next"]');
+        if (nextInput) {
+            try {
+                const origin = window.location.origin;
+                const path = window.location.pathname;
+                nextInput.value = `${origin}${path}?success=true`;
+            } catch (e) {
+                // fallback: keep existing value
+            }
+        }
         
         // Add focus animations
         inputs.forEach(input => {
@@ -238,8 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
+            const isRealSend = this.hasAttribute('data-real-send');
             let isValid = true;
             inputs.forEach(input => {
                 // Check required fields
@@ -263,11 +273,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 privacyCheckbox.style.borderColor = '#ef4444';
             }
 
+            if (!isValid) {
+                e.preventDefault();
+                return;
+            }
+
+            if (isValid && isRealSend) {
+                // Allow native submit to FormSubmit; show lightweight loading state without emoji
+                const button = this.querySelector('.btn-primary');
+                if (button) {
+                    button.innerHTML = 'Invio…';
+                    button.classList.add('loading');
+                    button.style.pointerEvents = 'none';
+                }
+                return; // no preventDefault
+            }
+
+            // Simulated flow (legacy behaviour)
+            e.preventDefault();
             if (isValid) {
                 const button = this.querySelector('.btn-primary');
                 const originalText = button.innerHTML;
                 
-                button.innerHTML = '<span style="display: flex; align-items: center; gap: 0.5rem;"><span style="animation: spin 0.6s linear infinite; display: inline-block;">⚡</span> Elaborazione...</span>';
+                button.innerHTML = 'Elaborazione…';
                 button.style.pointerEvents = 'none';
                 
                 setTimeout(() => {
@@ -366,8 +394,32 @@ document.addEventListener('DOMContentLoaded', function() {
         .form-group {
             transition: transform 0.2s ease;
         }
+
+        .form-success {
+            margin: 0 auto 1rem;
+            max-width: 1100px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff;
+            padding: 0.9rem 1rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 24px rgba(16, 185, 129, 0.3);
+            text-align: center;
+            font-weight: 700;
+        }
     `;
     document.head.appendChild(style);
+    // Show success banner after redirect from FormSubmit
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('success') === 'true') {
+        const banner = document.createElement('div');
+        banner.className = 'form-success';
+        banner.textContent = 'Messaggio inviato! Ti risponderemo al più presto.';
+        const qc = document.querySelector('.quote-container');
+        const cs = document.querySelector('.contact-section');
+        if (qc) qc.prepend(banner);
+        else if (cs) cs.prepend(banner);
+        else document.body.prepend(banner);
+    }
 
     // ===== LOGO CLICK EASTER EGG =====
     const logo = document.querySelector('.logo');

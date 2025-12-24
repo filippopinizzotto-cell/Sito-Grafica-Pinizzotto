@@ -80,23 +80,28 @@
                     </div>
                 </div>
                 
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" method="POST" action="https://formsubmit.co/pinizzottofilippo04@gmail.com" data-real-send>
+                    <input type="hidden" name="_subject" value="Nuovo messaggio contatti - Pinizzotto">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none">
+                    <input type="hidden" name="_next" value="https://www.pinizzotto.it/contatti.html?success=true">
                     <h2>Inviaci un messaggio</h2>
                     <div class="form-group">
-                        <input type="text" id="name" placeholder=" " required>
+                        <input type="text" id="name" name="nome" placeholder=" " required>
                         <label for="name">Nome</label>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" placeholder=" " required>
+                        <input type="email" id="email" name="email" placeholder=" " required>
                         <label for="email">Email</label>
                     </div>
                     <a href="#" class="privacy-link" id="privacyLink">Leggi l'informativa sulla privacy (D.Lgs 196/2003)</a>
                     <div class="form-group checkbox">
-                        <input type="checkbox" id="privacy" required>
+                        <input type="checkbox" id="privacy" name="privacy" required>
                         <label for="privacy">Ho letto l'informativa sulla privacy e acconsento al trattamento dei miei dati personali</label>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" rows="5" placeholder=" " required></textarea>
+                        <textarea id="message" name="messaggio" rows="5" placeholder=" " required></textarea>
                         <label for="message">Messaggio</label>
                     </div>
                     <button type="submit" class="btn btn-primary">
