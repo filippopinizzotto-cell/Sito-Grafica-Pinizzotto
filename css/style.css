@@ -67,6 +67,9 @@ body {
     background: var(--bg-primary);
     transition: background-color 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch; /* smooth momentum on iOS */
+    touch-action: pan-y; /* let browser optimize vertical scroll */
+    overscroll-behavior-y: contain; /* avoid rubber-band chain */
 }
 
 /* Respect reduced motion */
@@ -147,6 +150,16 @@ header {
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     transition: all 0.3s ease;
     box-shadow: var(--shadow-md);
+}
+
+/* Class-based scroll states to avoid inline style thrash */
+header.header-condensed {
+    padding: 0.5rem 0;
+    box-shadow: var(--shadow-md);
+}
+
+header.header-hidden {
+    transform: translateY(-100%);
 }
 
 html.dark-mode header {

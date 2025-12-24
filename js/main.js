@@ -175,21 +175,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ===== PARALLAX EFFECT WITH SMOOTH SCROLL =====
+    const parallaxElements = document.querySelectorAll('.gradient-ball');
     let ticking = false;
+    const isMobileParallax = window.matchMedia('(pointer: coarse), (max-width: 768px)').matches;
     
     window.addEventListener('scroll', () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
                 const scrolled = window.pageYOffset;
-                const parallaxElements = document.querySelectorAll('.gradient-ball');
-                
-                parallaxElements.forEach((el, index) => {
-                    const speed = 0.3 + (index * 0.1);
-                    const offsetX = scrolled * speed * 0.5;
-                    const offsetY = scrolled * speed;
-                    const scale = 1 + scrolled * 0.00005;
-                    el.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
-                });
+
+                // Skip heavy transforms on mobile for smooth scrolling
+                if (!isMobileParallax && parallaxElements.length) {
+                    parallaxElements.forEach((el, index) => {
+                        const speed = 0.3 + (index * 0.1);
+                        const offsetX = scrolled * speed * 0.5;
+                        const offsetY = scrolled * speed;
+                        const scale = 1 + scrolled * 0.00005;
+                        el.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+                    });
+                }
 
                 // Hide/show scroll indicator with smooth fade
                 const scrollIndicator = document.querySelector('.scroll-indicator');
@@ -342,30 +346,35 @@ document.addEventListener('DOMContentLoaded', function() {
         heroSubtitle.style.opacity = '1';
     }
 
-    // ===== HEADER SCROLL EFFECT =====
+    // ===== HEADER SCROLL EFFECT (class-based for smoother behavior) =====
     let lastScroll = 0;
     const header = document.querySelector('header');
-    
+    const isMobileHeader = window.matchMedia('(max-width: 768px)').matches;
+
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 100) {
-            header.style.padding = '0.5rem 0';
-            header.style.boxShadow = 'var(--shadow-md)';
-        } else {
-            header.style.padding = '1rem 0';
-            header.style.boxShadow = 'none';
+
+        // Condensed state toggle
+        const shouldCondense = currentScroll > 100;
+        const isCondensed = header.classList.contains('header-condensed');
+        if (shouldCondense !== isCondensed) {
+            header.classList.toggle('header-condensed', shouldCondense);
         }
-        
-        // Hide header on scroll down, show on scroll up
-        if (currentScroll > lastScroll && currentScroll > 500) {
-            header.style.transform = 'translateY(-100%)';
+
+        // Hide on scroll down only for larger screens
+        if (!isMobileHeader) {
+            const shouldHide = currentScroll > lastScroll && currentScroll > 500;
+            const isHidden = header.classList.contains('header-hidden');
+            if (shouldHide !== isHidden) {
+                header.classList.toggle('header-hidden', shouldHide);
+            }
         } else {
-            header.style.transform = 'translateY(0)';
+            // Ensure header visible on mobile to avoid flicker at top
+            header.classList.remove('header-hidden');
         }
-        
+
         lastScroll = currentScroll;
-    });
+    }, { passive: true });
 
     // ===== ADD CSS ANIMATIONS =====
     const style = document.createElement('style');
