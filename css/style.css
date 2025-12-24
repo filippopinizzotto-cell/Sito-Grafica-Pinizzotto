@@ -2640,6 +2640,12 @@ html.dark-mode .select-group::after {
         transform: translateX(0);
         opacity: 1;
     }
+
+    /* Close-out animation when tapping a link */
+    .nav-menu.closing {
+        transform: translateX(100%);
+        opacity: 0;
+    }
     
     .nav-menu ul {
         flex-direction: column;

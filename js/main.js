@@ -59,18 +59,50 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.querySelector('.nav-menu');
     
     if (hamburger && navMenu) {
-        hamburger.addEventListener('click', () => {
+        // Accessibility attributes
+        hamburger.setAttribute('role', 'button');
+        hamburger.setAttribute('tabindex', '0');
+        hamburger.setAttribute('aria-label', 'Apri menu di navigazione');
+
+        const toggleMenu = () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
             const isOpen = hamburger.classList.contains('active');
             hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        };
+
+        hamburger.addEventListener('click', toggleMenu);
+        hamburger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMenu();
+            }
         });
 
-        // Close menu when clicking a link
+        // Close menu with a brief animation before navigating
         document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
+                const isMenuOpen = hamburger.classList.contains('active');
+                const isMobile = window.matchMedia('(max-width: 1024px)').matches;
+                if (isMenuOpen && isMobile) {
+                    const href = link.getAttribute('href');
+                    if (href && !href.startsWith('#')) {
+                        e.preventDefault();
+                        navMenu.classList.add('closing');
+                        hamburger.classList.remove('active');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                        setTimeout(() => {
+                            navMenu.classList.remove('active');
+                            navMenu.classList.remove('closing');
+                            window.location.href = href;
+                        }, 250);
+                        return;
+                    }
+                }
+                // Default immediate close (desktop or anchors)
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
             });
         });
     }
