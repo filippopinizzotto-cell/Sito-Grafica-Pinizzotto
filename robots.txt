@@ -1,0 +1,5 @@
+# robots.txt for https://www.pinizzotto.it
+User-agent: *
+Allow: /
+
+Sitemap: https://www.pinizzotto.it/sitemap.xml
