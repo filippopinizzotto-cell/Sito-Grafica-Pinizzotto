@@ -326,62 +326,112 @@ class ChatbotWidget {
     getSmartResponse(message) {
         // Risposte intelligenti basate su parole chiave
         
-        // Servizi
-        if (message.includes('serviz') || message.includes('cosa fate') || message.includes('cosa offrite')) {
+        // Saluti
+        if (message.includes('ciao') || message.includes('buongiorno') || message.includes('salve') || message.includes('hey') || message.includes('buonasera')) {
+            return "Ciao! Benvenuto in Grafica Pinizzotto. Sono qui per aiutarti con informazioni su stampa, design, preventivi e tutto quello che ti serve.\n\nCosa stai cercando oggi?";
+        }
+        
+        // Servizi generali
+        if (message.includes('serviz') || message.includes('cosa fate') || message.includes('cosa offrite') || message.includes('di cosa vi occupate') || message.includes('che lavori')) {
             return "Ci occupiamo di stampa professionale e design grafico. I nostri servizi principali sono:\n\nStampa: biglietti da visita, brochure, manifesti, volantini, etichette\nDesign: logo, materiale marketing, packaging\nProdotti: agende, calendari, partecipazioni\n\nC'è qualcosa in particolare che ti interessa?";
         }
         
-        // Preventivo
-        if (message.includes('preventiv') || message.includes('prezzo') || message.includes('costo') || message.includes('quanto')) {
-            return "Ti do alcune stime indicative:\n\nBiglietti da visita: da €30 (500 pz)\nBrochure A4: da €0,50 cad\nManifesti 70x100: da €15 cad\nLogo design: da €150\nVolantini A5: da €0,30 cad\n\nI prezzi variano in base a quantità, carta, finiture e personalizzazioni.\n\nPer un preventivo preciso posso farti contattare:\n+39 0342 683265 | info@pinizzotto.it\n\nOppure dimmi cosa ti serve nello specifico e vediamo di aiutarti!";
-        }
-        
         // Biglietti da visita
-        if (message.includes('bigliett')) {
+        if (message.includes('bigliett') || message.includes('business card')) {
             return "I biglietti da visita sono uno dei nostri punti di forza! Possiamo realizzarli classici, personalizzati, con vernice UV, rilievo lucido, oro 3D o plastificati.\n\nChe tipo di biglietto stavi cercando? Ti serve anche il design o hai già la grafica pronta?";
         }
         
-        // Tempi di consegna
-        if (message.includes('temp') || message.includes('consegn') || message.includes('quanto tempo')) {
-            return "Tempi di consegna:\n\n• Lavori standard: 3-5 giorni lavorativi\n• Urgenze: disponibili su richiesta\n\nPer tempi precisi contattaci al +39 0342 683265";
+        // Brochure/Depliant
+        if (message.includes('brochure') || message.includes('depliant') || message.includes('pieghevol') || message.includes('volantino') || message.includes('volantini') || message.includes('flyer')) {
+            return "Realizziamo brochure, depliant e volantini in vari formati e finiture. Possiamo stamparli su carta patinata, usomano, riciclata e con diverse piegature.\n\nChe formato ti serve? Hai già la grafica o ti serve anche il design?";
         }
         
-        // Contatti
-        if (message.includes('contatt') || message.includes('telefon') || message.includes('email') || message.includes('dove')) {
-            return "I nostri contatti:\n\nIndirizzo: Via Nazionale, 406/A - 23010 Piantedo SO\nTelefono: +39 0342 683265\nEmail: info@pinizzotto.it\nWeb: pinizzotto.it\n\nAperti dal lunedì al venerdì.";
+        // Manifesti/Locandine
+        if (message.includes('manifest') || message.includes('locandin') || message.includes('poster') || message.includes('affiche')) {
+            return "Stampiamo manifesti e locandine in vari formati: A3, A2, A1, 70x100 e formati personalizzati.\n\nPer che tipo di evento o comunicazione ti servono? Quanti ne servirebbero?";
         }
         
-        // Design/Grafica
-        if (message.includes('design') || message.includes('logo') || message.includes('grafica')) {
+        // Design/Logo/Grafica
+        if (message.includes('design') || message.includes('logo') || message.includes('grafica') || message.includes('progett') || message.includes('creare un logo')) {
             return "Ci occupiamo di design grafico completo! Possiamo creare loghi da zero, restyling di loghi esistenti, brochure, materiale marketing e molto altro.\n\nInclusi nel servizio ci sono revisioni illimitate e tutti i file sorgente.\n\nHai già un'idea di cosa ti serve o preferisci che ti aiutiamo a definire il progetto?";
         }
         
-        // Packaging
-        if (message.includes('packaging') || message.includes('scatol') || message.includes('confezione')) {
+        // Packaging/Scatole
+        if (message.includes('packaging') || message.includes('scatol') || message.includes('confezione') || message.includes('shopper') || message.includes('sacchett') || message.includes('etichett')) {
             return "Il packaging è fondamentale per valorizzare il tuo prodotto! Realizziamo scatole personalizzate, shopper, etichette adesive e astucciature.\n\nLavoriamo con ristoranti, hotel, negozi di abbigliamento e tanti altri settori.\n\nDi che tipo di packaging hai bisogno? È per un'attività specifica?";
         }
         
         // Agende/Calendari
-        if (message.includes('agenda') || message.includes('calendar') || message.includes('2026')) {
+        if (message.includes('agenda') || message.includes('calendar') || message.includes('2026') || message.includes('2027') || message.includes('block notes') || message.includes('quadern')) {
             return "Abbiamo già le collezioni 2026! Realizziamo agende personalizzate, calendari da tavolo, da muro e block notes con il tuo logo.\n\nSono perfetti come regalo aziendale o per i tuoi clienti.\n\nTi servono per la tua azienda? Quante unità ti servirebbero indicativamente?";
         }
         
-        // Partecipazioni/Eventi
-        if (message.includes('partecipazion') || message.includes('matrimonio') || message.includes('evento') || message.includes('invit')) {
+        // Partecipazioni/Matrimonio
+        if (message.includes('partecipazion') || message.includes('matrimonio') || message.includes('nozze') || message.includes('sposaliz') || message.includes('evento') || message.includes('invit') || message.includes('save the date')) {
             return "Le partecipazioni e gli inviti sono una delle nostre specialità! Ci prendiamo cura di ogni dettaglio con stampa di qualità e cura artigianale.\n\nRealizziamo partecipazioni matrimonio, libretti messa, inviti per eventi, save the date...\n\nÈ per un matrimonio o per un altro tipo di evento?";
         }
         
-        // Saluti
-        if (message.includes('ciao') || message.includes('buongiorno') || message.includes('salve') || message.includes('hey')) {
-            return "Ciao! Benvenuto in Grafica Pinizzotto. Sono qui per aiutarti con informazioni su stampa, design, preventivi e tutto quello che ti serve.\n\nCosa stai cercando oggi?";
+        // Preventivo/Prezzi
+        if (message.includes('preventiv') || message.includes('prezzo') || message.includes('prezzi') || message.includes('costo') || message.includes('quanto costa') || message.includes('quanto') || message.includes('tariff')) {
+            return "Ti do alcune stime indicative:\n\nBiglietti da visita: da €30 (500 pz)\nBrochure A4: da €0,50 cad\nManifesti 70x100: da €15 cad\nLogo design: da €150\nVolantini A5: da €0,30 cad\n\nI prezzi variano in base a quantità, carta, finiture e personalizzazioni.\n\nPer un preventivo preciso posso farti contattare:\n+39 0342 683265 | info@pinizzotto.it\n\nOppure dimmi cosa ti serve nello specifico e vediamo di aiutarti!";
+        }
+        
+        // Tempi di consegna
+        if (message.includes('temp') || message.includes('consegn') || message.includes('quanto tempo') || message.includes('quando') || message.includes('veloce') || message.includes('urgenz')) {
+            return "Tempi di consegna:\n\n• Lavori standard: 3-5 giorni lavorativi\n• Urgenze: disponibili su richiesta\n\nPer tempi precisi contattaci al +39 0342 683265";
+        }
+        
+        // Contatti/Dove siete
+        if (message.includes('contatt') || message.includes('telefon') || message.includes('email') || message.includes('dove') || message.includes('indirizzo') || message.includes('trovare') || message.includes('sede') || message.includes('ubicazion')) {
+            return "I nostri contatti:\n\nIndirizzo: Via Nazionale, 406/A - 23010 Piantedo SO\nTelefono: +39 0342 683265\nEmail: info@pinizzotto.it\nWeb: pinizzotto.it\n\nAperti dal lunedì al venerdì.";
+        }
+        
+        // Orari
+        if (message.includes('orari') || message.includes('apertura') || message.includes('aperto') || message.includes('chiuso') || message.includes('aprite') || message.includes('chiudete')) {
+            return "Siamo aperti dal lunedì al venerdì durante l'orario di ufficio.\n\nPer essere sicuro di trovarci, ti consiglio di chiamare prima al +39 0342 683265 o di inviarci una mail a info@pinizzotto.it";
+        }
+        
+        // Carta/Materiali
+        if (message.includes('carta') || message.includes('material') || message.includes('tipo di carta') || message.includes('grammat') || message.includes('patinat') || message.includes('ricicl')) {
+            return "Lavoriamo con diversi tipi di carta e materiali:\n\nCarta patinata lucida o opaca (da 90 a 350 gr)\nCarta usomano\nCarta riciclata\nCartoncini speciali\n\nA seconda del prodotto consigliamo il materiale più adatto. Di cosa hai bisogno?";
+        }
+        
+        // Quantità minime
+        if (message.includes('quantità') || message.includes('minim') || message.includes('quant') || message.includes('pochi') || message.includes('numero')) {
+            return "Le quantità minime dipendono dal tipo di prodotto:\n\nBiglietti da visita: minimo 50 pz\nVolantini/Brochure: minimo 50 pz\nManifesti: anche singoli\nAgende/Calendari: minimo 25 pz\n\nPer piccole tirature abbiamo soluzioni adatte. Cosa ti serviva?";
+        }
+        
+        // Esempi/Portfolio
+        if (message.includes('esemp') || message.includes('portfo') || message.includes('vedere') || message.includes('mostrare') || message.includes('lavori fatt') || message.includes('realizzat')) {
+            return "Puoi vedere alcuni dei nostri lavori sul sito pinizzotto.it oppure passare in sede!\n\nSe vuoi, possiamo anche inviarti dei campioni fisici o degli esempi specifici per il tipo di lavoro che ti interessa.\n\nContattaci: +39 0342 683265 | info@pinizzotto.it";
+        }
+        
+        // File/Formato
+        if (message.includes('file') || message.includes('formato') || message.includes('pdf') || message.includes('jpg') || message.includes('inviare') || message.includes('mandare')) {
+            return "Accettiamo file in diversi formati: PDF (preferito), AI, EPS, JPG, PNG.\n\nSe hai già la grafica pronta, puoi inviarla a info@pinizzotto.it insieme alle specifiche del lavoro.\n\nSe invece ti serve il design, ci pensiamo noi!";
+        }
+        
+        // Spedizione/Consegna
+        if (message.includes('spedi') || message.includes('invio') || message.includes('corriere') || message.includes('ricever') || message.includes('arriva')) {
+            return "Possiamo spedire il materiale in tutta Italia tramite corriere espresso.\n\nOppure puoi ritirare direttamente da noi a Piantedo (SO).\n\nI costi di spedizione dipendono da quantità e destinazione. Dove ti serve il materiale?";
+        }
+        
+        // Pagamento
+        if (message.includes('pagamento') || message.includes('pagare') || message.includes('bonifico') || message.includes('carta') || message.includes('metodo')) {
+            return "Accettiamo diverse modalità di pagamento:\n\nBonifico bancario\nContanti (ritiro in sede)\nAssegno\n\nPer maggiori dettagli contattaci: +39 0342 683265";
         }
         
         // Ringraziamenti
-        if (message.includes('grazie') || message.includes('perfetto') || message.includes('ok')) {
+        if (message.includes('grazie') || message.includes('perfetto') || message.includes('ok') || message.includes('va bene') || message.includes('ottimo')) {
             return "Prego! Per altre informazioni contattaci al +39 0342 683265 o info@pinizzotto.it";
         }
         
-        // Risposta generica
+        // Aiuto generico
+        if (message.includes('aiut') || message.includes('info') || message.includes('sapere') || message.includes('spieg')) {
+            return "Certo, sono qui per aiutarti!\n\nPosso darti informazioni su:\n• Stampa (biglietti, brochure, manifesti...)\n• Design grafico e loghi\n• Preventivi e prezzi\n• Tempi di consegna\n• Materiali e finiture\n\nCosa ti serve sapere?";
+        }
+        
+        // Risposta generica migliorata
         return "Interessante! Per darti le informazioni più precise, potresti dirmi qualcosa in più su cosa ti serve?\n\nOppure se preferisci parlare direttamente con noi:\n+39 0342 683265 | info@pinizzotto.it\n\nTi interessa qualcosa di specifico tra stampa, design o altro?";
     }
 
