@@ -276,27 +276,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ===== TYPING EFFECT FOR HERO SUBTITLE =====
+    // ===== HERO SUBTITLE: KEEP STYLES ON FIRST LOAD =====
     const heroSubtitle = document.querySelector('.hero-subtitle');
-    if (heroSubtitle && !sessionStorage.getItem('typingDone')) {
-        const text = heroSubtitle.textContent;
-        heroSubtitle.textContent = '';
+    if (heroSubtitle) {
         heroSubtitle.style.opacity = '1';
-        
-        let index = 0;
-        const typeSpeed = 50;
-        
-        function type() {
-            if (index < text.length) {
-                heroSubtitle.textContent += text.charAt(index);
-                index++;
-                setTimeout(type, typeSpeed);
-            } else {
-                sessionStorage.setItem('typingDone', 'true');
-            }
-        }
-        
-        setTimeout(type, 800);
     }
 
     // ===== HEADER SCROLL EFFECT =====
