@@ -324,13 +324,14 @@
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .chatbot-container {
-        width: 85vw;
-        height: 480px;
-        bottom: 90px;
-        left: 7.5vw;
-        right: auto;
-        border-radius: 16px;
-        max-height: 480px;
+        width: 100vw;
+        height: 92vh;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: auto;
+        border-radius: 20px 20px 0 0;
+        max-height: none;
     }
     
     .chatbot-button {
@@ -343,8 +344,8 @@
     }
     
     .chatbot-header {
-        padding: 12px 14px;
-        border-radius: 16px 16px 0 0;
+        padding: 16px;
+        border-radius: 20px 20px 0 0;
     }
     
     .chatbot-header h3 {
