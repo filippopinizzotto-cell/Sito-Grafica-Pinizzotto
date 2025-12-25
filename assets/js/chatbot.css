@@ -325,13 +325,13 @@
 @media (max-width: 768px) {
     .chatbot-container {
         width: 90vw;
-        height: 500px;
+        height: 380px;
         bottom: 90px;
         left: 5vw;
         right: auto;
         top: auto;
         border-radius: 16px;
-        max-height: 500px;
+        max-height: 380px;
     }
     
     .chatbot-button {
@@ -344,16 +344,16 @@
     }
     
     .chatbot-header {
-        padding: 14px 16px;
+        padding: 12px 14px;
         border-radius: 16px 16px 0 0;
     }
     
     .chatbot-header h3 {
-        font-size: 15px;
+        font-size: 14px;
     }
     
     .chatbot-header p {
-        font-size: 11px;
+        font-size: 10px;
     }
     
     .chatbot-close {
