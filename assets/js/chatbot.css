@@ -111,10 +111,10 @@
 .chatbot-messages {
     flex: 1;
     overflow-y: auto;
-    padding: 20px;
+    padding: 12px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     background: #f8f9fa;
 }
 
@@ -205,44 +205,49 @@
 /* WELCOME MESSAGE */
 .welcome-message {
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     color: #666;
 }
 
 .welcome-message h4 {
     color: #c41e5f;
     font-size: 16px;
-    margin: 0 0 10px 0;
+    margin: 0 0 2px 0;
+    font-weight: 700;
 }
 
 .welcome-message p {
-    font-size: 13px;
-    line-height: 1.5;
-    margin: 0;
+    font-size: 11px;
+    line-height: 1.3;
+    margin: 0 0 8px 0;
+    color: #888;
 }
 
 .suggestion-buttons {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-top: 15px;
+    gap: 6px;
+    margin-top: 8px;
 }
 
 .suggestion-btn {
-    padding: 10px;
+    padding: 9px 12px;
     background: white;
-    border: 1px solid #ddd;
+    border: 1.5px solid #e0e0e0;
     border-radius: 8px;
     cursor: pointer;
     font-size: 12px;
     transition: all 0.2s;
     color: #333;
+    font-weight: 500;
+    text-align: left;
 }
 
 .suggestion-btn:hover {
-    background: #f0f0f0;
+    background: #f8f8f8;
     border-color: #c41e5f;
     color: #c41e5f;
+    transform: translateY(-1px);
 }
 
 /* INPUT */
@@ -331,8 +336,8 @@
     
     .chatbot-button {
         bottom: 20px;
-        left: auto;
-        right: 20px;
+        left: 20px;
+        right: auto;
         width: 60px;
         height: 60px;
         font-size: 26px;
@@ -381,17 +386,27 @@
     }
     
     .welcome-message {
-        padding: 20px 16px;
+        padding: 8px;
     }
     
     .welcome-message h4 {
-        font-size: 18px;
-        margin-bottom: 12px;
+        font-size: 15px;
+        margin-bottom: 1px;
     }
     
     .welcome-message p {
-        font-size: 14px;
-        line-height: 1.6;
+        font-size: 10px;
+        line-height: 1.2;
+        margin-bottom: 6px;
+    }
+    
+    .suggestion-buttons {
+        gap: 5px;
+    }
+    
+    .suggestion-btn {
+        padding: 8px 10px;
+        font-size: 11px;
     }
     
     .suggestion-btn {
