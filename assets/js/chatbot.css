@@ -325,13 +325,13 @@
 @media (max-width: 768px) {
     .chatbot-container {
         width: 90vw;
-        height: 380px;
+        height: 410px;
         bottom: 90px;
         left: 5vw;
         right: auto;
         top: auto;
         border-radius: 16px;
-        max-height: 380px;
+        max-height: 410px;
     }
     
     .chatbot-button {
