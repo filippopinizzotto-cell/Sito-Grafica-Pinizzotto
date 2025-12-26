@@ -1292,7 +1292,7 @@ html.dark-mode .mini-photo {
 /* ===== SCROLL TO TOP BUTTON ===== */
 .scroll-to-top {
     position: fixed;
-    bottom: 2rem;
+    bottom: 120px;
     right: 2rem;
     width: 50px;
     height: 50px;
@@ -3393,5 +3393,48 @@ html.dark-mode .btn-cookie.customize:hover {
     .privacy-close {
         right: 1rem;
         top: 1rem;
+    }
+}
+/* ===== BOTPRESS POSITIONING ===== */
+/* Sposta il bot Botpress sulla sinistra dello schermo */
+div[class*="botpress"] {
+    direction: ltr;
+}
+
+iframe[src*="botpress"] {
+    left: 20px !important;
+    right: auto !important;
+}
+
+div[class*="Webchat"] {
+    left: 20px !important;
+    right: auto !important;
+}
+
+/* Specifiche per il contenitore principale di Botpress */
+div[style*="position: fixed"] {
+    left: 20px !important;
+    right: auto !important;
+}
+
+/* Button Botpress - a sinistra in basso */
+.bp-widget-button,
+button[class*="botpress"],
+[class*="botpress-widget"] {
+    left: 20px !important;
+    right: auto !important;
+}
+
+/* Su mobile */
+@media (max-width: 768px) {
+    iframe[src*="botpress"],
+    div[class*="Webchat"],
+    div[style*="position: fixed"],
+    .bp-widget-button,
+    button[class*="botpress"],
+    [class*="botpress-widget"] {
+        left: 10px !important;
+        right: auto !important;
+        bottom: 20px !important;
     }
 }
