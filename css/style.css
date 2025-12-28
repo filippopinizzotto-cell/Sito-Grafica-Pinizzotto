@@ -2938,7 +2938,11 @@ html.dark-mode .select-group::after {
     }
 
     .form-group {
-        margin-bottom: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group:last-of-type {
+        margin-bottom: 2.5rem;
     }
 
     .form-actions {
